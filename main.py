@@ -10,6 +10,7 @@ def main():
 	memoriaC = criarCache(config);
 	# Criando a Memória Principal
 	memoriaP = criarPrincipal(config);
+	# Escolhendo o que se deseja fazer
 	resposta = input("Digite o comando ou digite SAIR para sair: ")
 	resposta = resposta.lower()
 	
@@ -19,7 +20,7 @@ def main():
 		if(resposta[0] == "show"):
 			show(memoriaC, memoriaP);
 		elif(resposta[0] == "read"):
-			lerCache(config, memoriaC, memoriaP, resposta[1]);
+			read(config, memoriaC, memoriaP, resposta[1]);
 		elif(resposta[0] == "white"):
 			break;
 		else:

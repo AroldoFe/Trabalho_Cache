@@ -21,3 +21,4 @@ def mostrarPrincipal(memoriaP):
 
 	for linha in memoriaP:
 		print(linha);
+	print('\n');

@@ -7,9 +7,9 @@ def criarCache(config):
 	for bloco in range( config['Linhas'] ):
 		for palavra in range( config['Palavras'] ):
 			linha.append(str(bloco)); # linha
-			linha.append('x') # bloco
-			linha.append('y'); # endereço
-			linha.append('z'); # conteudo
+			linha.append('0') # bloco
+			linha.append('0'); # endereço
+			linha.append('0'); # conteudo
 			memoriaC.append('-'.join(linha)); 
 			#memoriaC.append(linha);
 			endereco += 1;
@@ -23,3 +23,4 @@ def mostrarCache(memoriaC):
 
 	for linha in memoriaC:
 		print(linha);
+	print('\n');
