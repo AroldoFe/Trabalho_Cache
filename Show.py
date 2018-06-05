@@ -1,6 +1,6 @@
 from Cache import mostrarCache
 from Principal import mostrarPrincipal
 
-def show(memoriaC, memoriaP):
-	mostrarCache(memoriaC);
-	mostrarPrincipal(memoriaP);
+def show(memoriaC, memoriaP, config):
+	mostrarCache(memoriaC, config);
+	mostrarPrincipal(memoriaP, config);

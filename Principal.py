@@ -15,10 +15,11 @@ def criarPrincipal(config):
 
 	return memoriaP;
 
-def mostrarPrincipal(memoriaP):
+def mostrarPrincipal(memoriaP, config):
 	print("\nMEMÓRIA PRINCIPAL:");
 	print("Linha-Bloco-Endereço-Conteúdo");
 
 	for linha in memoriaP:
-		print(linha);
-	print('\n');
+		if(config['Mapeamento'] == 1): print(linha);
+		else: print(linha[0]);
+		

@@ -18,10 +18,10 @@ def main():
 		resposta = resposta.split(" ");
 		#mostrando as memórias
 		if(resposta[0] == "show"):
-			show(memoriaC, memoriaP);
+			show(memoriaC, memoriaP, config);
 		elif(resposta[0] == "read"):
-			read(config, memoriaC, memoriaP, resposta[1]);
-		elif(resposta[0] == "white"):
+			memoriaC = read(config, memoriaC, memoriaP, resposta[1]);
+		elif(resposta[0] == "write"):
 			break;
 		else:
 			print("Erro: opção inválida!");
