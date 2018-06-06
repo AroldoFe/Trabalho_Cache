@@ -20,6 +20,5 @@ def mostrarPrincipal(memoriaP, config):
 	print("Linha-Bloco-Endereço-Conteúdo");
 
 	for linha in memoriaP:
-		if(config['Mapeamento'] == 1): print(linha);
-		else: print(linha[0]);
+		print(linha);
 		

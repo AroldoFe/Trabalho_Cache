@@ -2,5 +2,5 @@ Palavras: 4
 Linhas: 8
 Blocos: 16
 Mapeamento: 2
-Conjuntos: 2
+Conjuntos: 8
 Substituicao: 4
