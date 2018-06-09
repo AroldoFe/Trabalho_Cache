@@ -12,7 +12,7 @@ def main():
 	# Criando a Memória Principal
 	memoriaP = criarPrincipal(config);
 	# Escolhendo o que se deseja fazer
-	resposta = input("Digite o comando ou digite SAIR para sair: ")
+	resposta = input("Digite o comando ou digite QUIT para sair: ")
 	resposta = resposta.lower()
 	
 	while(resposta != 'quit'):
@@ -28,7 +28,7 @@ def main():
 		else:
 			print("Erro: opção inválida!");
 		
-		resposta = input("Digite o comando ou digite SAIR para sair: ")
+		resposta = input("Digite o comando ou digite QUIT para sair: ")
 		resposta = resposta.lower()
 
 
