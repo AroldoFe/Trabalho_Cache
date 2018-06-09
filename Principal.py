@@ -17,7 +17,7 @@ def criarPrincipal(config):
 
 def mostrarPrincipal(memoriaP, config):
 	print("\nMEMÓRIA PRINCIPAL:");
-	print("Linha-Bloco-Endereço-Conteúdo");
+	print("Bloco-Endereço-Conteúdo");
 
 	for linha in memoriaP:
 		print(linha);

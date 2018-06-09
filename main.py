@@ -2,6 +2,7 @@ from Cache import *
 from Principal import *
 from Show import *
 from Leitura import *
+from Escrita import *
 
 def main():
 	# Lendo o arquivo de configuração
@@ -20,9 +21,10 @@ def main():
 		if(resposta[0] == "show"):
 			show(memoriaC, memoriaP, config);
 		elif(resposta[0] == "read"):
-			memoriaC = read(config, memoriaC, memoriaP, resposta[1]);
+			memoriaC = read(config, memoriaC, memoriaP, resposta[1], True);
 		elif(resposta[0] == "write"):
-			break;
+			memoriaC = writeCache(memoriaC, memoriaP, config, resposta[1], resposta[2]);
+			memoriaP = writePRIN(memoriaP, resposta[1], resposta[2]);
 		else:
 			print("Erro: opção inválida!");
 		

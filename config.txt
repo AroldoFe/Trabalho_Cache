@@ -3,4 +3,4 @@ Linhas: 8
 Blocos: 16
 Mapeamento: 2
 Conjuntos: 8
-Substituicao: 4
+Substituicao: 2
