@@ -15,7 +15,7 @@ def main():
 	resposta = input("Digite o comando ou digite SAIR para sair: ")
 	resposta = resposta.lower()
 	
-	while(resposta != 'sair'):
+	while(resposta != 'quit'):
 		resposta = resposta.split(" ");
 		#mostrando as memórias
 		if(resposta[0] == "show"):

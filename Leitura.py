@@ -53,7 +53,7 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 			for i in memoriaC:
 				if(i.split('-')[2] == str(endereco)):
 					if(HIT):
-						print('HIT linha ' + i.split('-')[0]);
+						print('HIT -> linha ' + i.split('-')[0]);
 					return memoriaC;
 
 			# Não está na cache então devo substituir
@@ -89,7 +89,7 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 			for i in memoriaC:
 				if(i[0].split('-')[2] == str(endereco)):
 					if(HIT):
-						print('HIT linha ' + i[0].split('-')[0]);
+						print('HIT -> linha ' + i[0].split('-')[0]);
 					return memoriaC;
 
 			# Não está na cache então devo substituir
@@ -135,7 +135,7 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 			for key, value in enumerate(memoriaC):
 				if(value[0].split('-')[2] == str(endereco)):
 					if(HIT):
-						print('HIT linha ' + value[0].split('-')[0]);
+						print('HIT -> linha ' + value[0].split('-')[0]);
 					memoriaC[key][1] += 1;
 					return memoriaC;
 
