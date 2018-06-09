@@ -18,13 +18,23 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 		new_Cache = []
 		for i in memoriaC:
 			if(i[0].split('-')[2] == endereco):
-				i[0] = i[0].split('-');
-				i[0][3] = conteudo;
-				new_Cache.append('-'.join(i[0]))
+				linha = i[0].split('-');
+				linha[3] = conteudo;
+				linha = '-'.join(linha)
+				if(config['Substituicao'] == 1): # Random
+					new_Cache.append(linha)
+				elif(config['Substituicao'] == 2): # FIFO
+					new_Cache.append([linha, i[1]])
+				else: 								# LFU
+					new_Cache.append([linha, i[1]])
 			else:
-				new_Cache.append(i);
+				if(config['Substituicao']!=3): new_Cache.append(i);
+				else:
+					i[1] += 1
+					new_Cache.append(i);
 
 	print("    * novo valor do endereço: "+endereco+"="+conteudo)
+
 	return new_Cache;
 
 def writePRIN(memoriaP, endereco, conteudo):
