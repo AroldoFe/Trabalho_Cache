@@ -17,7 +17,7 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 		palavra = int(endereco)%config['Palavras'];
 
 		# Preciso saber se o bloco está alocado
-		if(memoriaC[linha_Cache*4+palavra].split('-')[2] == endereco):
+		if(memoriaC[linha_Cache*(config['Palavras'])+palavra].split('-')[2] == endereco):
 				print('HIT linha ' + str(linha_Cache))
 				return memoriaC;
 		# Deu MISS
@@ -127,11 +127,16 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 			print('MISS -> Alocado na linha ' + linha_Cache + ' bloco ' + onde + ' substituído');
 			
 		elif(config['Substituicao'] == 3): # LFU
+			onde = int(endereco)//config['Palavras'];
+
+			for key, value in enumerate(memoriaC):
+				if(value[0].split('-')[1] == str(onde)): # Bloco
+					memoriaC[key][1] += 1;
+
 			for key, value in enumerate(memoriaC):
 				if(value[0].split('-')[2] == str(endereco)):
 					if(HIT):
 						print('HIT -> linha ' + value[0].split('-')[0]);
-					memoriaC[key][1] += 1;
 					return memoriaC;
 
 			# Não está na cache então devo substituir
@@ -161,7 +166,7 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 					linha_subs = []
 					linha_subs.append(i[0].split('-')[0]);
 					linha_subs.append(bloco_Subs[aux]);
-					linha_subs = ['-'.join(linha_subs), max(entradas)+1]
+					linha_subs = ['-'.join(linha_subs), 1]
 					#print(linha_subs);
 					new_Cache.append(linha_subs);
 					aux += 1;

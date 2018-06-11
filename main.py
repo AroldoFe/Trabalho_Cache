@@ -19,6 +19,7 @@ def main():
 		resposta = resposta.split(" ");
 		#mostrando as memórias
 		if(resposta[0] == "show"):
+			#print(memoriaC)
 			show(memoriaC, memoriaP, config);
 		elif(resposta[0] == "read"):
 			memoriaC = read(config, memoriaC, memoriaP, resposta[1], True);

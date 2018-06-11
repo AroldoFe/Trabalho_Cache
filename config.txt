@@ -1,6 +1,6 @@
 Palavras: 4
-Linhas: 8
-Blocos: 16
+Linhas: 4
+Blocos: 14
 Mapeamento: 1
 Conjuntos: 2
-Substituicao: 1
+Substituicao: 4
