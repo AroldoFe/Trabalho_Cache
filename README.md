@@ -24,13 +24,13 @@ Aroldo Felix Pereira Júnior
 </ul>
 <p> Não foi possível concluir o mapeamento Parcialmente Associativo além de quando a quantidade de conjuntos é 
 igual a 1 (usa-se mapeamento direto)  ou igual à quantidade de linhas da cache (usa-se mapeamento totalmente associativo).
-<p>Sobre a coerência de dados entre Cache e Principal, foi-se decidido utilizar o método write-through, devido a simples implementação e para evitar a substituição do bloco que está para sair da cache na memória principal, já que estão sincronizados.
+<p>Sobre a estratégia de escrita de dados na Cache e na Principal, foi-se decidido utilizar o método write-through, devido a simples implementação e para evitar a substituição do bloco que está para sair da cache na memória principal, já que estão sincronizados.
   
-<h3> Bibliotecas Externas</h3>
+<h3> Bibliotecas Internas</h3>
 <p> Foi usada a biblioteca Random para geração de números aleatórios tanto para
 criação da cache quanto para o método de substituição de bloco aleatório.
 
-<h3>Bibliotecas Internas</h3>
+<h3>Bibliotecas Criadas</h3>
 Aqui são explicadas as funções externas ao programa main criadas pelo autor do trabalho.
 <p>Cache: arquivo onde as funções criarCache e mostrarCache são implementadas, nomes autoexplicativos.
 <p>Escrita: arquivo onde as funções writeCache e writePRIN são implementadas, writeCache é a função
