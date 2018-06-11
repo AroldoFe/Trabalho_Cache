@@ -24,7 +24,7 @@ def main():
 			memoriaC = read(config, memoriaC, memoriaP, resposta[1], True);
 		elif(resposta[0] == "write"):
 			memoriaC = writeCache(memoriaC, memoriaP, config, resposta[1], resposta[2]);
-			memoriaP = writePRIN(memoriaP, resposta[1], resposta[2]);
+			memoriaP = writePRIN(memoriaP, resposta[1], resposta[2], config['Palavras']);
 		else:
 			print("Erro: opção inválida!");
 		

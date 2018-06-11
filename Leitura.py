@@ -14,10 +14,10 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 	if(config['Mapeamento'] == 1 or(config['Mapeamento'] == 3 and config['Conjuntos'] == 1)): #Direto ou parcialmente associativo com conjuntos de tamanho 1
 		num_Bloco = int(endereco)//config['Blocos'];
 		linha_Cache = num_Bloco%config['Linhas'];
+		palavra = int(endereco)%config['Palavras'];
 
 		# Preciso saber se o bloco está alocado
-		for i in range(4):
-			if(memoriaC[linha_Cache*4+i].split('-')[2] == endereco):
+		if(memoriaC[linha_Cache*4+palavra].split('-')[2] == endereco):
 				print('HIT linha ' + str(linha_Cache))
 				return memoriaC;
 		# Deu MISS

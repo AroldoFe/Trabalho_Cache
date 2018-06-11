@@ -40,9 +40,9 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 		print("    * novo valor do endereço: "+endereco+" é "+conteudo)
 		return new_Cache;
 
-def writePRIN(memoriaP, endereco, conteudo):
-	bloco = int(endereco)//4;
-	palavra = int(endereco)%4;
+def writePRIN(memoriaP, endereco, conteudo, palavras):
+	bloco = int(endereco)//palavras;
+	palavra = int(endereco)%palavras;
 
 	linha_subs = memoriaP[bloco*4+palavra].split('-')
 	linha_subs[2] = conteudo
