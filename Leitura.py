@@ -16,10 +16,9 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 		linha_Cache = num_Bloco%config['Linhas'];
 
 		# Preciso saber se o bloco está alocado
-		for i in memoriaC:
-			if(endereco == i.split('-')[2]):
-				if(HIT):
-					print('HIT linha ' + str(linha_Cache))
+		for i in range(4):
+			if(memoriaC[linha_Cache*4+i].split('-')[2] == endereco):
+				print('HIT linha ' + str(linha_Cache))
 				return memoriaC;
 		# Deu MISS
 
