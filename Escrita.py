@@ -5,15 +5,18 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 	if(config['Mapeamento'] == 1
 		or config['Mapeamento'] == 3 and config['Conjuntos'] == 1
 		or config['Mapeamento'] == 2 and config['Substituicao'] == 1):
-		new_Cache = []
-		for i in memoriaC:
-			if(i.split('-')[2] == endereco):
-				i = i.split('-');
-				#velho_conteudo == i[3];
-				i[3] = conteudo;
-				new_Cache.append('-'.join(i))
-			else:
-				new_Cache.append(i);
+
+		num_Bloco = int(endereco)//config['Blocos'];
+		linha_Cache = num_Bloco%config['Linhas'];
+
+		# Preciso saber se o bloco está alocado
+		for i in range(4):
+			if(memoriaC[linha_Cache*4+i].split('-')[2] == endereco):
+				linha_subs = memoriaC[linha_Cache*4+i].split('-');
+				linha_subs[3] = conteudo;
+				memoriaC[linha_Cache*4+i] = '-'.join(linha_subs);
+				print("    * novo valor do endereço: "+endereco+"="+conteudo)
+				return memoriaC;
 	elif(config['Mapeamento'] == 2 or config['Mapeamento'] == 3 and config['Linhas'] == config['Conjuntos']): # Totalmente Associativo
 		new_Cache = []
 		for i in memoriaC:
@@ -33,18 +36,15 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 					i[1] += 1
 					new_Cache.append(i);
 
-	print("    * novo valor do endereço: "+endereco+"="+conteudo)
-
-	return new_Cache;
+		print("    * novo valor do endereço: "+endereco+"="+conteudo)
+		return new_Cache;
 
 def writePRIN(memoriaP, endereco, conteudo):
-	new_RAM = []
-	for i in memoriaP:
-		if(i.split('-')[1] == endereco):
-			i = i.split('-');
-			i[2] = conteudo;
-			new_RAM.append('-'.join(i))
-		else:
-			new_RAM.append(i);
+	bloco = int(endereco)//4;
+	palavra = int(endereco)%4;
 
-	return new_RAM;
+	linha_subs = memoriaP[bloco*4+palavra].split('-')
+	linha_subs[2] = conteudo
+	memoriaP[bloco*4+palavra] = '-'.join(linha_subs);
+
+	return memoriaP;
