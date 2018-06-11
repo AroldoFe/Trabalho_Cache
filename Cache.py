@@ -4,9 +4,10 @@ def criarCache(config):
 	linha = []
 	endereco = 0;
 	
-	auxConjunto = 0;
-	contConjunto = 0;
 	for bloco in range( config['Linhas'] ):
+		contConjunto = 0;
+		auxConjunto = 0;
+		contLinhas = 0;
 		for palavra in range( config['Palavras'] ):
 
 			linha.append(str(bloco)); # linha
@@ -20,7 +21,7 @@ def criarCache(config):
 				linha = '-'.join(linha)
 			elif(config['Mapeamento'] == 2 or (config['Mapeamento'] == 3 and config['Linhas'] == config['Conjuntos'])): # Totalmente assoc. com FIFO, LRU ou LFU
 				linha = ['-'.join(linha), 0];
-			
+
 			memoriaC.append(linha);
 			endereco += 1;
 			linha = []; # reseta a linha
