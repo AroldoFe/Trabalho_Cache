@@ -58,7 +58,10 @@ def mostrarCache(memoriaC, config):
 		for value in memoriaC.values():
 			for k,v in value.items():
 				for i in range(config['Palavras']):
-					print(str(k)+'-'+str(v[i])+' '+str(v[-1]));
+					if(config['Substituicao']!=1):
+						print(str(k)+'-'+str(v[i])+' '+str(v[-1]));
+					else:
+						print(str(k)+'-'+str(v[i]));
 	else:
 		for linha in memoriaC:
 			if(config['Mapeamento'] == 1

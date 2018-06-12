@@ -223,15 +223,16 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 
 		return new_Cache;
 	elif(config['Mapeamento'] == 3):
-		bloco_principal = endereco%config['Palavras']; # Qual bloco na memo principal ele tá?
-		bloco_cache = bloco_principal%config['Conjuntos'];
+		# Serve para todos: Random, FIFO, LFU e LRU
+		bloco_principal = int(endereco)%config['Palavras']; # Qual bloco na memo principal ele está?
+		bloco_cache = bloco_principal%config['Conjuntos']; # Qual conjunto ele deve estar?
 
 		if(config['Substituicao'] == 1): # Aleatório
-			for i in memoriaC:
-				if(i.split('-')[2] == str(endereco)):
-					if(HIT):
-						print('HIT -> linha ' + i.split('-')[0]);
-					return memoriaC;
+			for k,v in memoriaC[bloco_cache].items():
+				for i in range(config['Palavras']):
+					if(v[i].split('-')[1] == str(endereco)):	
+						print('HIT -> linha ' + str(k));
+						return memoriaC;
 
 			# Não está na cache então devo substituir
 			# Bloco da memória principal
@@ -243,21 +244,58 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 				if(int(search[0]) == onde):
 					bloco_Subs.append('-'.join(search));
 			# Ja tenho o bloco
-			# Onde colocar? random(0, config)
-			linha_Cache = str(randint(0, config['Linhas']+1));
-			
-			aux = 0;
-			new_Cache = []
-			for i in memoriaC:
-				
-				if(i.split('-')[0] == linha_Cache):
-					onde = i.split('-')[1]
-					linha_subs = []
-					linha_subs.append(i.split('-')[0]);
-					linha_subs.append(bloco_Subs[aux]);
-					new_Cache.append('-'.join(linha_subs));
-					aux += 1;
-				else:
-					new_Cache.append(i);
+			# Onde colocar depois de cheia? random(0, config)
+			# Não estando cheia
 
+			for k,v in memoriaC[bloco_cache].items():
+				if(v[0] == 'Null-Null-Null'):
+					memoriaC[bloco_cache][k] = bloco_Subs;
+					print('MISS -> Alocado na linha ' + str(k) + ' bloco NULL substituído');
+					return memoriaC;
+					
+			# Estando cheia
+			
+			linha_Cache = randint(0,len(memoriaC[bloco_cache].keys())-1); # é inclusive, então poderia dar falha de segmentação
+			linha_Cache = list(memoriaC[bloco_cache].keys())[linha_Cache] # Agora eu tenho a linha que quero susbtituir
+
+			onde = memoriaC[bloco_cache][linha_Cache][0].split('-')[0]
+
+			memoriaC[bloco_cache][linha_Cache] = bloco_Subs
+			
 			print('MISS -> Alocado na linha ' + str(linha_Cache) + ' bloco ' + str(onde) + ' substituído');
+
+			return memoriaC
+		elif(config['Substituicao'] == 2): # FIFO
+			for k,v in memoriaC[bloco_cache].items():
+				for i in range(config['Palavras']):
+					if(v[i].split('-')[1] == str(endereco)):	
+						print('HIT -> linha ' + str(k));
+						return memoriaC;
+
+			# Não está na cache então devo substituir
+			# Bloco da memória principal
+			bloco_Subs = [];
+			# Em que bloco o endereço está na memória principal?
+			onde = int(endereco)//config['Palavras'];
+			for i in memoriaP:
+				search = i.split('-');
+				if(int(search[0]) == onde):
+					bloco_Subs.append('-'.join(search));
+			# Ja tenho o bloco
+			# Vou substituir no que tem o menor valor associado
+			# Vetor com valores auxiliares
+			entradas = [];
+			for i in memoriaC[bloco_cache].values():
+				entradas.append(i[-1]);
+			print(entradas);
+			menor = min(entradas);
+			print(menor);
+
+			for k,v in memoriaC[bloco_cache].items():
+				if(memoriaC[bloco_cache][k][-1] == menor):
+					onde = memoriaC[bloco_cache][k][0].split('-')[0]
+					memoriaC[bloco_cache][k] = bloco_Subs;
+					memoriaC[bloco_cache][k].append(max(entradas)+1);
+					print('MISS -> Alocado na linha ' + str(k) + ' bloco ' + str(onde) + ' substituído');
+					return memoriaC;
+
