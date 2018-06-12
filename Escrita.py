@@ -14,7 +14,7 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 			linha_subs = memoriaC[linha_Cache*config['Palavras']+palavra].split('-');
 			linha_subs[3] = conteudo;
 			memoriaC[linha_Cache*config['Palavras']+palavra] = '-'.join(linha_subs);
-			print("    * novo valor do endereço: "+endereco+" é "+conteudo)
+			print("    * novo valor do endereço "+endereco+" é "+conteudo)
 		return memoriaC
 
 	elif(config['Mapeamento'] == 2 or config['Mapeamento'] == 3 and config['Linhas'] == config['Conjuntos']): # Totalmente Associativo
@@ -44,8 +44,22 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 					i[1] += 0
 					new_Cache.append(i);
 
-		print("    * novo valor do endereço: "+endereco+" é "+conteudo)
+		print("    * novo valor do endereço "+endereco+" é "+conteudo)
 		return new_Cache;
+	elif(config['Mapeamento'] == 3):
+		# Serve para todos: Random, FIFO, LFU e LRU
+		bloco_principal = int(endereco)//config['Palavras']; # Qual bloco na memo principal ele está?
+		conjunto = bloco_principal%config['Conjuntos']; # Qual conjunto ele deve estar?
+
+		for k,v in memoriaC[conjunto].items():
+			for i in range(config['Palavras']):
+				if(v[i].split('-')[1] == str(endereco)):
+					copy_linha = v[i].split('-')
+					copy_linha[-1] = conteudo;
+					copy_linha = '-'.join(copy_linha);
+					memoriaC[conjunto][k][i] = copy_linha;
+					print("    * novo valor do endereço "+endereco+" é "+conteudo)
+					return memoriaC;
 
 def writePRIN(memoriaP, endereco, conteudo, palavras):
 	bloco = int(endereco)//palavras;
