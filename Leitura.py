@@ -175,8 +175,57 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 
 			print('MISS -> Alocado na linha ' + linha_Cache + ' bloco ' + onde + ' substituído');
 		
+		elif(config['Substituicao'] == 4): # LRU
+			onde = int(endereco)//config['Palavras'];
+
+			#Preciso saber qual o próximo ciclo
+			entradas = [];
+			for i in memoriaC:
+				entradas.append(i[1]);
+			menor = min(entradas);
+			
+			for key, value in enumerate(memoriaC):
+				if(value[0].split('-')[2] == str(endereco)):
+					if(HIT):
+						print('HIT -> linha ' + value[0].split('-')[0]);
+						for key2, value2 in enumerate(memoriaC):
+							if(value2[0].split('-')[1] == str(onde)):
+								memoriaC[key2][1] = max(entradas) + 1;
+					return memoriaC;
+
+			# Não está na cache então devo substituir
+			# Bloco da memória principal
+			bloco_Subs = [];
+			# Em que bloco o endereço está na memória principal?
+			onde = int(endereco)//config['Palavras'];
+			for i in memoriaP:
+				search = i.split('-');
+				if(int(search[0]) == onde):
+					bloco_Subs.append('-'.join(search));
+			# Ja tenho o bloco
+
+			aux = 0;
+			new_Cache = []
+			for i in memoriaC:	
+				if(i[1] == menor and aux < 4):
+					linha_Cache = i[0].split('-')[0]
+					onde = i[0].split('-')[1]
+					linha_subs = []
+					linha_subs.append(i[0].split('-')[0]);
+					linha_subs.append(bloco_Subs[aux]);
+					linha_subs = ['-'.join(linha_subs), max(entradas)+1]
+					new_Cache.append(linha_subs);
+					aux += 1;
+				else:
+					new_Cache.append(i);
+
+			print('MISS -> Alocado na linha ' + linha_Cache + ' bloco ' + onde + ' substituído');
+
 		return new_Cache;
 	elif(config['Mapeamento'] == 3):
+		bloco_principal = endereco%config['Palavras']; # Qual bloco na memo principal ele tá?
+		bloco_cache = bloco_principal%config['Conjuntos'];
+
 		if(config['Substituicao'] == 1): # Aleatório
 			for i in memoriaC:
 				if(i.split('-')[2] == str(endereco)):

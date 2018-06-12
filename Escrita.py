@@ -19,6 +19,12 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 
 	elif(config['Mapeamento'] == 2 or config['Mapeamento'] == 3 and config['Linhas'] == config['Conjuntos']): # Totalmente Associativo
 		new_Cache = []
+		'''if(config['Substituicao'] == 4): # Preciso pegar o próximo ciclo
+			LRU = []
+			for i in memoriaC:
+				LRU.append(i[1]);
+		'''
+
 		for i in memoriaC:
 			if(i[0].split('-')[2] == endereco):
 				linha = i[0].split('-');
@@ -28,12 +34,14 @@ def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
 					new_Cache.append(linha)
 				elif(config['Substituicao'] == 2): # FIFO
 					new_Cache.append([linha, i[1]])
-				else: 								# LFU
+				elif(config['Substituicao'] == 3): # LFU
+					new_Cache.append([linha, i[1]])
+				else: 								# LRU
 					new_Cache.append([linha, i[1]])
 			else:
 				if(config['Substituicao']!=3): new_Cache.append(i);
 				else:
-					i[1] += 1
+					i[1] += 0
 					new_Cache.append(i);
 
 		print("    * novo valor do endereço: "+endereco+" é "+conteudo)

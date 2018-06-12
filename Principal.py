@@ -8,7 +8,7 @@ def criarPrincipal(config):
 		for palavra in range( config['Palavras'] ):
 			linha.append(str(bloco)); # bloco 
 			linha.append(str(endereco)); # endereço
-			linha.append(str(randint(0,127))); # conteudo
+			linha.append(str(randint(1,127))); # conteudo
 			memoriaP.append('-'.join(linha));
 			endereco += 1;
 			linha = []; # reseta a linha
