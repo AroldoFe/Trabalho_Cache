@@ -4,7 +4,7 @@
 Aroldo Felix Pereira Júnior
 
 <h2>Descrição</h2>
-<p>Neste tópico são abordadas características sobre o trabalho.</p>
+<p>Trabalho realizado para obtenção da nota parcial da 3ª unidade do semestre 2018.1 para a disciplina de Introdução a Introdução e Organização de Computadores.</p>
 
 <h3>Geral</h3>
 <p>Projeto desenvolvido na liguagem Python 3 que simula o comportamento da memória Cache L1 e a principal. <br>
