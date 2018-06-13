@@ -20,11 +20,10 @@ Aroldo Felix Pereira Júnior
       <li> Aleatória
       <li> First In First Out (FIFO)
       <li> Least Frequently Used (LFU)
+      <li> Least Recently Used (LRU)
     </ol>
 </ul>
-<p> Não foi possível concluir o mapeamento Parcialmente Associativo além de quando a quantidade de conjuntos é 
-igual a 1 (usa-se mapeamento direto)  ou igual à quantidade de linhas da cache (usa-se mapeamento totalmente associativo).
-<p>Sobre a estratégia de escrita de dados na Cache e na Principal, foi-se decidido utilizar o método write-through, devido a simples implementação e para evitar a substituição do bloco que está para sair da cache na memória principal, já que estão sincronizados.
+<p> Sobre a estratégia de escrita de dados na Cache e na Principal, foi-se decidido utilizar o método write-through, devido a simples implementação e para evitar a substituição do bloco que está para sair da cache na memória principal, já que estão sincronizados.
   
 <h3> Bibliotecas Internas</h3>
 <p> Foi usada a biblioteca Random para geração de números aleatórios tanto para
@@ -39,7 +38,7 @@ que escreve na cache, de maneira análoga, writePRIN na memória Principal.
 A função ler é para leitura do arquivo de configuração "config.txt". 
 A função read é para leitura na cache para dar HIT ou MISS.
 <p>Principal: arquivo onde as funções criarPrincipal e mostrarPrincipal são implementadas, 
-imilarmente a ao arquivo Cache, porém em relação a memória Principal.
+similarmente às funções de criação e mostragem da Cache, porém em relação a memória Principal.
 <p>Show: arquivo cuja função show é implementada, ela chama mostrarCache e mostrarPrincipal.
 
 <h2> Compilação</h2>
