@@ -1,8 +1,12 @@
 from Leitura import *
 
 def writeCache(memoriaC, memoriaP, config, endereco, conteudo):
+	if(int(endereco)>= config['Blocos']*config['Palavras']):
+		print('----> Erro: endereço fora do intervalo!');
+		return memoriaP;
+
 	memoriaC = read(config, memoriaC, memoriaP, endereco, True);
-	if(config['Mapeamento'] == 1):
+	if(config['Mapeamento'] == 1 or (config['Mapeamento'] == 3 and (config['Conjuntos'] == 1 or config['Conjuntos'] == config['Linhas']))):
 
 		num_Bloco = int(endereco)//config['Palavras'];
 		linha_Cache = num_Bloco%config['Linhas'];

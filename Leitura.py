@@ -11,9 +11,12 @@ def ler():
 	return config;
 
 def read(config, memoriaC, memoriaP, endereco, HIT):
+	if(int(endereco)>= config['Blocos']*config['Palavras']):
+		print('----> Erro: endereço fora do intervalo!');
+		return memoriaC;
 	# ------------------------------------ Direto ------------------------------------
 
-	if(config['Mapeamento'] == 1): # Direto
+	if(config['Mapeamento'] == 1 or (config['Mapeamento'] == 3 and config['Conjuntos'] == 1)): # Direto
 		num_Bloco = int(endereco)//config['Palavras'];
 		linha_Cache = num_Bloco%config['Linhas'];
 		palavra = int(endereco)%config['Palavras'];
@@ -32,7 +35,7 @@ def read(config, memoriaC, memoriaP, endereco, HIT):
 
 	# ------------------------------------ Totalmente Associativo ------------------------------------
 
-	elif(config['Mapeamento'] == 2): # Totalmente associativo
+	elif(config['Mapeamento'] == 2 or (config['Mapeamento'] == 3 and config['Conjuntos'] == config['Linhas'])): # Totalmente associativo
 		# Não está na cache então devo substituir
 		# Em que bloco o endereço está na memória principal?
 		onde = int(endereco)//config['Palavras'];

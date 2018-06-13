@@ -6,10 +6,10 @@ def criarCache(config):
 	for i in range(config['Palavras']): # Criando os valores Null's
 		linha.append('Null-Null-Null');
 	
-	if(config['Mapeamento'] != 3):
+	if(config['Mapeamento'] != 3 or(config['Mapeamento'] == 3 and (config['Conjuntos'] == 1 or config['Conjuntos'] == config['Linhas']))):
 		for i in range(config['Linhas']):
 			memoriaC[i] = linha;
-			if(config['Mapeamento'] == 2 and config['Substituicao'] != 1):
+			if((config['Mapeamento'] == 2 and config['Substituicao'] != 1) or (config['Mapeamento'] == 3 and config['Conjuntos'] == config['Linhas'])):
 				memoriaC[i].append(0);
 		return memoriaC;
 	else:
@@ -36,7 +36,7 @@ def mostrarCache(memoriaC, config):
 	print("Linha-Bloco-Endereço-Conteúdo");
 
 
-	if(config['Mapeamento'] == 3):
+	if(config['Mapeamento'] == 3 and (config['Conjuntos'] != 1 and config['Conjuntos'] != config['Linhas'])):
 		for value in memoriaC.values():
 			for k,v in value.items():
 				for i in range(config['Palavras']):
@@ -47,7 +47,7 @@ def mostrarCache(memoriaC, config):
 	else:
 		for key,value in memoriaC.items():
 			for i in range(config['Palavras']):
-				if(config['Mapeamento'] != 1 and config['Substituicao'] != 1):
+				if(config['Mapeamento'] != 1  and config['Substituicao'] != 1):
 					print(str(key)+'-'+str(value[i])+' ....... '+str(value[-1]));
 				else:
 					print(str(key)+'-'+str(value[i]));
