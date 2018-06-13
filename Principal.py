@@ -1,15 +1,16 @@
 from random import randint
 
 def criarPrincipal(config):
-	memoriaP = [];
+	memoriaP = {};
 	linha = []
 	endereco = 0;
 	for bloco in range( config['Blocos'] ):
+		memoriaP[bloco] = [];
 		for palavra in range( config['Palavras'] ):
 			linha.append(str(bloco)); # bloco 
 			linha.append(str(endereco)); # endereço
 			linha.append(str(randint(1,127))); # conteudo
-			memoriaP.append('-'.join(linha));
+			memoriaP[bloco].append('-'.join(linha));
 			endereco += 1;
 			linha = []; # reseta a linha
 
@@ -19,6 +20,6 @@ def mostrarPrincipal(memoriaP, config):
 	print("\nMEMÓRIA PRINCIPAL:");
 	print("Bloco-Endereço-Conteúdo");
 
-	for linha in memoriaP:
-		print(linha);
-		
+	for value in memoriaP.values():
+		for i in range(config['Palavras']):
+			print(str(value[i]));
